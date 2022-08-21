@@ -1,0 +1,148 @@
+html,body{
+	background: #b6cec7;
+	color: #000;
+}
+.ul{
+	list-style: none;
+	padding: 0px;
+}
+.li{
+	display: block;
+}
+.a{
+	text-decoration: none;
+}
+.brand-tag{
+	font-size: 12px;
+}
+.cart-icon{
+	position: relative;
+}
+.cart-count{
+	position: absolute;
+	bottom: 2px;
+	right: -3px;
+	background-color: orange;
+	color: #fff;
+	border-radius: 50%;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	-o-border-radius: 50%;
+	padding: 1px 3px;
+	font-size: 12px;
+}
+.mainmenu li{
+	font-family: sans-serif;
+	font-size: 15px;
+	font-weight: normal;
+}
+.image{
+	width: 100%;
+	cursor: pointer;
+}
+.font-san-serif{
+	font-family: sans-serif;
+	font-size: 16px;
+}
+.category-img-container{
+	position: relative;
+}
+.category-img-container img{
+	filter: brightness(110%);
+}
+.category-img-container .category-img-text{
+	width: 100%;
+	position: absolute;
+	font-family: sans-serif;
+	font-weight: bold;
+	left: 10%;
+	top: 0%;
+}
+.category-img-container .category-img-title{
+	top: 18%;
+	font-size: 20px;
+	text-transform: uppercase;
+	cursor: pointer;
+	color: #444;
+}
+.category-img-container .category-img-price{
+	top: 10%;
+	font-size: 15px;
+	color: gray;
+}
+.proportional{
+	min-height: 320px;
+	max-height: 320px;
+	object-fit: cover;
+	object-position: center;
+	transition: all 0.3s linear;
+}
+.listimage:hover{
+	filter: brightness(60%);
+	cursor: pointer;
+}
+.tableimage{
+	width: 60%;
+	max-height: 100px;
+	min-width: 60px;
+	object-fit: cover;
+	object-position: center;
+}
+.category-img-container:hover div{
+	color: #fff;
+}
+.trending-img-container{
+	position: relative;
+	background: #fff;
+}
+.featured-item-container{
+	position: relative;
+	background: #fff;
+}
+.item-heart{
+	position: absolute;
+	top: 10px;
+	right: 25px;
+	z-index: 10;
+	cursor: pointer;
+}
+.item-title:hover{
+	cursor: pointer;
+	color: orangered;
+}
+.social-links li a{
+	border: 1px solid lightgray;
+	border-radius: 4px 4px;
+	padding: 1px 10px;
+}
+.social-links li a:hover{
+	background: lightgray;
+}
+.menu-links a{
+	color: green;
+}
+.category-ul{
+	background: #F0f0f0;
+	overflow-y: scroll;
+	max-height: 320px;
+}
+.category-menu{
+	min-width: 200px;
+	max-width: 90vw;
+	left: -50%;
+	background: #fff;
+	overflow-x: scroll;
+}
+.category-menu a{
+	transition: all 0.4s linear;
+}
+.category-menu a:hover{
+	border-left: 2px solid orange;
+	padding-left: 15px;
+}
+.card-details{
+	display: none;
+}
+.shipping-container,.payment-container{
+	background: #fff;
+}

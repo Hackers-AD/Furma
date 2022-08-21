@@ -1,0 +1,30 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<meta name="description" content="Furma Ecommerce Project for Furniture Shop">
+	<title>{%block title%}Furma{%endblock%}</title>
+
+	<!--Style Sheets-->
+	<link rel="shortcut icon" href="{%static 'catalogue/img/icons/favicon0.ico'%}">
+	<link rel="stylesheet" type="text/css" href="{%static 'catalogue/css/bootstrap.min.css'%}">
+	<link rel="stylesheet" type="text/css" href="{%static 'catalogue/css/font-awesome.min.css'%}">
+	<link rel="stylesheet" type="text/css" href="{%static 'catalogue/css/style.css'%}">
+	{%block links%}{%endblock%}
+</head>
+<body>
+	{%block content%}
+		<!--Webbsite content here-->
+	{%endblock%}
+
+	<!--Javascript Files-->
+	<script type="text/javascript" src="{%static 'catalogue/js/jquery.js'%}"></script>
+	<script type="text/javascript" src="{%static 'catalogue/js/bootstrap.min.js'%}"></script>
+	<script type="text/javascript" src="{%static 'catalogue/js/script.js'%}"></script>
+	{%block scripts%}{%endblock%}
+
+</body>
+</html>

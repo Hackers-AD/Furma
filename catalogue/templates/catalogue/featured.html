@@ -1,0 +1,141 @@
+{%extends 'catalogue/home.html'%}
+{%load static%}{%load catalogue_tags%}
+
+{%block shopactive%}{%endblock%}
+{%block featuredactive%}active{%endblock%}
+
+{%block homecontent%}
+<div class="container">
+	<div class="row mt-5">
+		<div class="col-md-4">
+			<!--Filtering menus.Put filter button here for mobile screen that toggle below-->
+			<div class="featured-category-filter mt-2 mb-4">
+				<div class="navbar navbar-light bg-light shadow-sm">
+					<div class="text-uppercase font-san-serif">Category</div>
+					<div class="ml-auto">
+						<a href="#category-submenu" data-toggle="collapse" role="button" class="chevron-toggler">
+							<span class="fa fa-chevron-down"></span>
+						</a>
+					</div>
+				</div>
+				<div class="collapse show" id="category-submenu">
+					<ul class="ul category-ul">
+						<li class=""><a href="#" class="nav-link">Chairs</a></li>
+						<li class=""><a href="#" class="nav-link">Tables</a></li>
+						<li class=""><a href="#" class="nav-link">Sofas</a></li>
+						<li class=""><a href="#" class="nav-link">Mattress</a></li>
+						<li class=""><a href="#" class="nav-link">Bed</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="featured-price-filter my-4">
+				<div class="navbar navbar-light bg-light shadow-sm">
+					<div class="text-uppercase font-san-serif">Price</div>
+					<div class="ml-auto">
+						<a href="#price-submenu" data-toggle="collapse" role="button" class="chevron-toggler">
+							<span class="fa fa-chevron-down"></span>
+						</a>
+					</div>
+				</div>
+				<div class="collapse show" id="price-submenu" class="py-2">
+					<form>
+						<div class="d-flex justify-content-between align-items-center">
+							<div class="mx-1">
+								<div class="px-2">Min</div>
+								<div><input type="text" name="min" placeholder="$50" class="form-control"></div>
+							</div>
+							<div class="mx-1">
+								<div class="px-2">Max</div>
+								<div><input type="text" name="max" placeholder="$200" class="form-control"></div>
+							</div>
+							<div class="mx-1 mt-4">
+								<button class="btn btn-warning">Apply</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+			<div class="featured-period-filter my-4">
+				<div class="navbar navbar-light bg-light shadow-sm">
+					<div class="text-uppercase font-san-serif">Period/Movement</div>
+					<div class="ml-auto">
+						<a href="#period-submenu" data-toggle="collapse" role="button" class="chevron-toggler">
+							<span class="fa fa-chevron-down"></span>
+						</a>
+					</div>
+				</div>
+				<div class="collapse show" id="period-submenu">
+					<ul class="ul category-ul">
+						<li class=""><a href="#" class="nav-link">Antique</a></li>
+						<li class=""><a href="#" class="nav-link">Contemporary</a></li>
+						<li class=""><a href="#" class="nav-link">Vintage</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-8">
+			<div class="d-flex align-items-center justify-content-between">
+				<div class="h5">{%block featured%}Featured{%endblock%} Items</div>
+				<!--Sorting menus.Put filter button here for mobile screen that toggle below-->
+				<div class="sorting">
+					<select class="form-control">
+						<option>All Items</option>
+						<option>Latest</option>
+						<option>Expiring soon</option>
+						<option>Price: high to low</option>
+						<option>Price: low to high</option>
+					</select>
+				</div>
+			</div>
+			{%if products%}
+			<div class="item-container">
+				<div class="row my-3">
+					{%for product in products%}
+					<div class="col-md-6 my-2 featured-img-container">
+						{%for pimg in pimages%}
+							{%if pimg.product == product%}
+								{%if pimg.display_order == 0%}
+								<img src="{{pimg.original.url}}" class="image listimage proportional">
+								{%endif%}
+							{%endif%}
+						{%endfor%}
+
+						<div class="item-heart" id="liked-{{product.id}}">
+							{%if request.user|userlikedproduct:product%}
+								<img src="{%static 'catalogue/img/core-img/redheart.png'%}" class="heart">
+							{%else%}
+								<img src="{%static 'catalogue/img/core-img/heart.png'%}" class="heart">
+							{%endif%}
+						</div>
+
+						<div class="item-details py-3">
+							<div class="row justify-content-between px-3">
+								<div class="">
+									<div><b>Price: $160</b> <del>$200</del> <small>(20% Discount)</small></div>
+									<div class="h5 item-title">
+										{{product.title|truncatechars:20}}
+									</div>
+								</div>
+								<div class="">
+									<div class="item-rating">
+										<span class="fa fa-star"></span>
+										<span class="fa fa-star"></span>
+										<span class="fa fa-star"></span>
+									</div>
+									<div class="item-cart text-right">
+										<button class="btn btn-warning btn-sm">
+											<img src="{%static 'catalogue/img/core-img/cart.png'%}"> Add to Cart
+										</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					{%endfor%}
+				</div>
+			</div>
+			{%endif%}
+		</div>
+	</div>
+</div>
+{%endblock%}

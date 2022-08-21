@@ -1,0 +1,167 @@
+{%extends 'catalogue/home.html'%}
+
+{%load static%}{%load catalogue_tags%}
+
+{%block shopactive%}{%endblock%}
+
+{%block homecontent%}
+<div class="container my-4">
+	<div class="row my-3">
+		<div class="col-md-5">
+			<div>
+				{%for img in pimg%}
+					{%if img.product.id == p.id%}
+						{%if img.display_order == 0%}
+						<img src="{{img.original.url}}" class="image" alt="productimg">
+						{%endif%}
+					{%endif%}
+				{%endfor%}
+				<div class="item-heart" id="liked-{{product.id}}">
+					{%if request.user|userlikedproduct:p%}
+						<img src="{%static 'catalogue/img/core-img/redheart.png'%}" class="heart">
+					{%else%}
+					<img src="{%static 'catalogue/img/core-img/heart.png'%}" class="heart">
+					{%endif%}
+				</div>
+			</div>
+			<div class="my-2">
+				<div class="d-flex">
+					{%for img in pimg%}
+						{%if img.product.id == p.id%}
+							<div class="col-3 pl-0">
+								<img src="{{img.original.url}}" class="image" alt="productimg">
+							</div>
+						{%endif%}
+					{%endfor%}
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="h5">
+				<a href="/product/{{p.id}}" class="">{{p.title}}</a>
+			</div>
+			<div class="py-2">
+				<small>
+					{{p.description}}
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.
+				</small>
+			</div>
+			<div class="my-2">
+				<div class="d-flex align-items-center">
+					<div class="pr-3">Rating:</div>
+					<div class="px-2">
+						<span class="fa fa-star"></span><span class="fa fa-star"></span>
+						<span class="fa fa-star"></span><span class="fa fa-star"></span>
+						<span class="fa fa-star"></span>
+					</div>
+				</div>
+			</div>
+			<div class="my-2">
+				<div class="d-flex align-items-center">
+					<div class="pr-3">Quantity:</div>
+					<div>
+						<input type="number" name="quantity" value="1" min="0" class="form-control">
+					</div>
+				</div>
+			</div>
+			<hr class="text-light">
+			<div class="my-2">
+				<div class="my-2"><b>Price:</b> $2300.00</div>
+				<div class="my-2"><b>Features:</b></div>
+				<ul class="small pl-3">
+					<li>Here is the feature one.</li>
+					<li>Here is the feature one.</li>
+					<li>Here is the feature one.</li>
+				</ul>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class="card">
+				<div class="card-header">Buy This</div>
+				<div class="px-1">
+					<div class="my-2"><b class="text-gray">$2300.00</b></div>
+					<div class="my-2">
+						<small>This item does not ship to Nepal. Please check other sellers who may ship internationally</small>
+					</div>
+					<div class="my-2"><span class="text-success"><b>In Stock</b></span></div>
+					<div class="my-3">
+						<div class="my-2">
+							<button class="btn btn-outline-primary w-100">
+								<img src="{%static 'catalogue/img/core-img/cart.png'%}"> Add to Cart
+							</button>
+						</div>
+						<div class="my-2">
+							<button class="btn btn-outline-primary w-100">Buy Now</button>
+						</div>
+						<div class="my-2">
+							<button class="btn btn-outline-primary w-100">Add to List</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="similar-products">
+		{%if products%}
+		<div class="d-flex align-items-center justify-content-between pt-5 pb-3">
+			<div class="trending-title text-uppercase font-san-serif">Similar Recomended Products</div>
+			<div>
+				<a href="#" class="nav-link">
+					<button class="btn btn-light btn-sm">See All</button>
+				</a>
+			</div>
+		</div>
+		<div class="row">
+			{%for product in products%}
+			<div class="col-md-4 my-2">
+				<div class="trending-img-container">
+					{%for pimg in pimages%}
+						{%if pimg.product.id == product.id%}
+							{%if pimg.display_order == 0%}
+							<img src="{{pimg.original.url}}" class="image listimage proportional" alt="productimg">
+							{%endif%}
+						{%endif%}
+					{%endfor%}
+					<div class="item-heart" id="liked-{{product.id}}">
+					{%if request.user|userlikedproduct:product%}
+						<img src="{%static 'catalogue/img/core-img/redheart.png'%}" class="heart">
+					{%else%}
+					<img src="{%static 'catalogue/img/core-img/heart.png'%}" class="heart">
+					{%endif%}
+					</div>
+					<div class="item-details py-3">
+						<div class="row justify-content-between px-3">
+							<div class="navbar-light">
+								<div class="pl-1"><b>Price: $160</b> <del>$200</del> <small>(20% Discount)</small></div>
+								<div class="item-title font-weight-bold">
+									<a class="nav-link pl-1" href="/product/{{product.id}}">{{product.title|truncatechars:24}}</a>
+								</div>
+							</div>
+							<div class="">
+								<div class="item-rating">
+									<span class="fa fa-star"></span>
+									<span class="fa fa-star"></span>
+									<span class="fa fa-star"></span>
+									<span class="fa fa-star"></span>
+									<span class="fa fa-star"></span>
+								</div>
+								<div class="item-cart text-right">
+									<button class="btn btn-warning btn-sm addtocart-btn" type="button" id="addcart-{{product.id}}">
+										<img src="{%static 'catalogue/img/core-img/cart.png'%}"> Add to Cart
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			{%endfor%}
+		</div>
+		{%endif%}
+	</div>
+
+</div>
+{%endblock%}
